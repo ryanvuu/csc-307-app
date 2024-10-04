@@ -6,7 +6,7 @@ function TableHeader() {
       <tr>
         <th>Name</th>
         <th>Job</th>
-        <th>Remove Char</th>
+        <th>Remove</th>
       </tr>
     </thead>
   );
@@ -41,7 +41,7 @@ function Table(props) {
       <TableHeader />
       <TableBody 
       characterData={props.characterData} 
-      removeCharacter={props.removeOneCharacter}/>
+      removeCharacter={props.removeCharacter}/>
     </table>
   );
 }
