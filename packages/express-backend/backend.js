@@ -34,13 +34,43 @@ app.get("/users/:id", (req, res) => {
   }
 });
 
+const removeUser = (id) => {
+  const idx = users["users_list"].indexOf(findUserById(id));
+  if (idx == -1) {
+    res.status(404).send("Resource not found.");
+  }
+  users["users_list"].splice(idx, 1);
+};
+
+app.delete("/users/:id", (req, res) => {
+  const id = req.params["id"];
+  removeUser(id);
+  res.send();
+});
+
+const findUserByJob = (job) => {
+  return users["users_list"].filter(
+    (user) => user["job"] === job
+  )
+};
+
 app.get("/users", (req, res) => {
   const name = req.query.name;
-  if (name != undefined) {
+  const job = req.query.job;
+  // if (name != undefined && job != undefined) {
+    
+  // }
+  if (job != undefined) {
+    let result = findUserByJob(job);
+    result = { users_list: result };
+    res.send(result);
+  }
+  else if (name != undefined) {
     let result = findUserByName(name);
     result = { users_list: result };
     res.send(result);
-  } else {
+  } 
+  else {
     res.send(users);
   }
 });
