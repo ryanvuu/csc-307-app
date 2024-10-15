@@ -14,7 +14,7 @@ function MyApp() {
 
   function updateList(person) {
     postUser(person)
-      .then((personToAdd) => setCharacters([...characters, personToAdd]))
+      .then(() => setCharacters([...characters, person]))
       .catch((error) => {
         console.log(error);
       });
