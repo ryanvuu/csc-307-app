@@ -89,7 +89,7 @@ const removeUser = (id) => {
 app.delete("/users/:id", (req, res) => {
   const id = req.params["id"];
   removeUser(id);
-  res.send();
+  res.status(204).send();
 });
 
 app.get("/users", (req, res) => {
