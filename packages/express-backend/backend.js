@@ -116,7 +116,9 @@ app.get("/users", (req, res) => {
 });
 
 const addUser = (user) => {
-  user.id = Math.floor(Math.random() * 10000).toString()
+  if (!(user.id)) {
+    user.id = Math.floor(Math.random() * 10000).toString();
+  }
   users["users_list"].push(user);
   return user;
 };
@@ -124,7 +126,7 @@ const addUser = (user) => {
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   addUser(userToAdd)
-  let result = (findUserByName(userToAdd))
+  let result = (findUserByName(userToAdd.name))
   if (result == undefined) {
     res.status(400).send("Bad Request")
   } else {
