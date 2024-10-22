@@ -57,7 +57,7 @@ app.get("/users", (req, res) => {
 
   getUsers(name, job)
   .then((userRetrieved) => {
-    res.send(userRetrieved);
+    res.send( {users_list: userRetrieved} );
   })
   .catch((error) => {
     res.status(500).send(error);
