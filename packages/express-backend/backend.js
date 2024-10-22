@@ -78,8 +78,6 @@ app.delete("/users/:id", (req, res) => {
 app.get("/users", (req, res) => {
   const name = req.query.name;
   const job = req.query.job;
-  console.log(name);
-  console.log(job);
 
   getUsers(name, job)
   .then((userRetrieved) => {

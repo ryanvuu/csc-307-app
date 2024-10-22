@@ -11,6 +11,8 @@ function getUsers(name, job) {
     promise = findUserByName(name);
   } else if (job && !name) {
     promise = findUserByJob(job);
+  } else {
+    promise = userModel.find( {name: name, job: job} );
   }
   return promise;
 }
@@ -31,6 +33,10 @@ function findUserByName(name) {
 
 function findUserByJob(job) {
   return userModel.find({ job: job });
+}
+
+function findUserByNameJob(name, job) {
+  return userModel.find()
 }
 
 export default {
