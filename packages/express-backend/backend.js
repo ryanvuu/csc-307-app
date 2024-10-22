@@ -3,7 +3,7 @@ import cors from "cors";
 import userService from "./services/user-service.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-const { addUser, getUsers, findUserById, findUserByName, findUserByJob } = userService;
+const { addUser, getUsers, findUserById, findUserByName, findUserByJob, deleteUser } = userService;
 
 dotenv.config();
 
@@ -30,18 +30,6 @@ app.listen(port, () => {
   );
 });
 
-// const findUserByJob = (job) => {
-//   return users["users_list"].filter(
-//     (user) => user["job"] === job
-//   )
-// };
-
-// const findUserByNameJob = (name, job) => {
-//   return users["users_list"].filter(
-//     (user) => user["name"] === name && user["job"] === job
-//   );
-// };
-
 app.get("/users/:id", (req, res) => {
   const id = req.params["id"]; //or req.params.id
 
@@ -53,12 +41,6 @@ app.get("/users/:id", (req, res) => {
     res.status(500).send(error);
   });
 
-  // let result = findUserById(id);
-  // if (result === undefined) {
-  //   res.status(404).send("Resource not found.");
-  // } else {
-  //   res.send(result);
-  // }
 });
 
 // const removeUser = (id) => {
@@ -71,8 +53,10 @@ app.get("/users/:id", (req, res) => {
 
 app.delete("/users/:id", (req, res) => {
   const id = req.params["id"];
-  removeUser(id);
-  res.status(204).send();
+  deleteUser(id)
+  .then( (result) => {
+    res.status(204).send();
+  })
 });
 
 app.get("/users", (req, res) => {
