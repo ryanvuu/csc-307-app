@@ -43,14 +43,6 @@ app.get("/users/:id", (req, res) => {
 
 });
 
-// const removeUser = (id) => {
-//   const idx = users["users_list"].indexOf(findUserById(id));
-//   if (idx == -1) {
-//     res.status(404).send("Resource not found.");
-//   }
-//   users["users_list"].splice(idx, 1);
-// };
-
 app.delete("/users/:id", (req, res) => {
   const id = req.params["id"];
   deleteUser(id)
